@@ -1,0 +1,128 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    tr {
+        cursor: pointer;
+        color: black;
+        background-color: rgba(255,255,255,.4);
+    }
+</style>
+
+<!-- Container -->
+<div class="container" style="margin-top:100px">
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6">
+            <h2 style="background-color:rgba(255,255,255,.4); padding-left:10px;">General Account Settings:</h2>
+            <div class="table-responsive">
+                <table class="table table-hover table-condensed table-bordered">
+                    <tr data-target="#updateUsernameModal" data-toggle="modal">
+                        <td width="20%">Username:</td>
+                        <td>@Session["userName"].ToString()</td>
+                    </tr>
+                    <tr data-target="#updateEmailModal" data-toggle="modal">
+                        <td>Email:</td>
+                        <td>@Session["email"].ToString()</td>
+                    </tr>
+                    <tr data-target="#updatePasswordModal" data-toggle="modal">
+                        <td>Password:</td>
+                        <td>hided</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Update username modal-->
+<form method="post" id="updateUsernameForm">
+    <div class="modal fade" id="updateUsernameModal" role="dialog" aria-labelledby="updateUsernameModalTitle" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="updateUsernameModalTitle">Update username:</h4>
+                    </div>
+                    <div class="modal-body">
+                        <!--Update unsername message for PHP file-->
+                        <div id="updateUsernameMessage"></div>
+                        <div class="form-group">
+                            <label for="updateUsername">Username:</label>
+                            <input class="form-control" type="text" id="updateUsername" name="updateUsername" value="@Session["userName"]" maxlength="30">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input class="btn orange" name="update" type="submit" value="Update">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<!-- Update email form -->
+<form method="post" id="updateEmailForm" novalidate="NOVALIDATE">
+    <div class="modal fade" id="updateEmailModal" name="updateEmailModal" role="dialog" aria-labelledby="updateEmailTitle" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" id="updateEmailTitle">Update email:</h4>
+                </div>
+                <div class="modal-body">
+                    <!-- Update email message from PHP file -->
+                    <div id="updateEmailMessage"></div>
+                    <div class="form-group">
+                        <label for="updateEmail">Email:</label>
+                        <input type="email" class="form-control" name="updateEmail" id="updateEmail" value="@Session["email"]" maxlength="50">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" name="updateEmailButton" class="btn orange" value="Update">
+                    <button type="button" data-dismiss="modal" class="btn btn-default">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<!--Update password modal-->
+<form method="post" id="updatePasswordForm">
+    <div class="modal fade" id="updatePasswordModal" role="dialog" aria-labelledby="updatePasswordModalTitle" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" id="updatePasswordModalTitle">Update password:</h4>
+                </div>
+                <div class="modal-body">
+                    <!--Update password message for PHP file-->
+                    <div id="updatePasswordMessage"></div>
+                    <div class="form-group">
+                        <label for="currentPassword" class="sr-only">Current Password:</label>
+                        <input class="form-control" type="password" id="currentPassword" name="currentPassword" placeholder="Your current password" maxlength="30">
+                    </div>
+                    <div class="form-group">
+                        <label for="newPassword" class="sr-only">Choose a password:</label>
+                        <input class="form-control" type="password" id="newPassword" name="newPassword" placeholder="Choose a password" maxlength="30">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmNewPassword" class="sr-only">Confirm your password:</label>
+                        <input class="form-control" type="password" id="confirmNewPassword" name="confirmNewPassword" placeholder="Confirm your password" maxlength="30">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input class="btn orange" name="updatePasswordButton" type="submit" value="Update">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+  @Scripts.Render("~/bundles/profile")  
+}

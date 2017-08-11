@@ -1,0 +1,65 @@
+﻿@model IEnumerable<SimpleNote.Models.Note>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .delete {
+        display: none;
+    }
+</style>
+
+<!-- Container -->
+<div class="container" style="margin-top:100px">
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6">
+            <div class="marginBottom20">
+                <button type="button" id="addNote" class="btn btn-info btn-lg">Add Note</button>
+                <button type="button" id="allNotes" class="btn btn-info btn-lg" style="display:none;">All Notes</button>
+                <button type="button" id="edit" class="btn btn-info btn-lg pull-right">Edit</button>
+                <button type="button" id="done" class="btn green btn-lg pull-right" style="display:none;">Done</button>
+            </div>
+            <div id="notePad" style="display:none;">
+                @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "noteContentForm" }))
+                {
+                    <div class="input-group" style="margin-bottom: 10px">
+                        <span id="speechInput" class="input-group-addon btn btn-default">
+                            <i class="fa fa-microphone"></i>
+                        </span>
+                        <textarea id="notePadTextarea" class="form-control" rows="10"></textarea>
+                    </div>
+                    <input type="submit" class="btn btn-lg orange" name="submit" value="Submit" />
+                }
+            </div>
+            <div>
+                <div id="notes" class="notes">
+                    @if (!Model.Any())
+                    {
+                        <div class="well">There is no note. Create your first note.</div>
+                    }
+                    else
+                    {
+                        foreach (var note in Model)
+                        {
+                            <div class='note'>
+                                <div class='col-xs-5 col-sm-3 delete'>
+                                    <button class='btn btn-lg btn-danger' style='width: 100%'>Delete</button>
+                                </div>
+                                <div class='well' style='cursor:pointer;' id='@note.Id'>
+                                    <div class='text'>@note.Content</div>
+                                    <div class='timetext'>@note.ModifiedDate.ToShortDateString()</div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/mynotes")
+}

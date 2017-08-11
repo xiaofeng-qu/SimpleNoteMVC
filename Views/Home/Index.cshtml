@@ -1,0 +1,12 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!--Jumbotron with sign up button-->
+<div class="jumbotron" id="myContainer">
+    <h1>Online Notes App</h1>
+    <p>Your notes with you wherever you go.</p>
+    <p>Easy to use, protects all your notes!</p>
+    @Html.ActionLink("Sign up-It's free", "Signup", "Home", new { area = "" }, new { @class="btn btn-lg orange signup" })
+</div>

@@ -1,0 +1,40 @@
+﻿@model SimpleNote.Models.User
+
+<!--Login modal-->
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "loginForm" }))
+{
+    <div class="modal fade" id="loginModal" role="dialog" aria-labelledby="loginModalTitle" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" id="loginModalTitle">Login:</h4>
+                </div>
+                <div class="modal-body">
+                    <!-- Login message from ASP.NET file -->
+                    <div id="loginMessage"></div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Email, new { @class = "sr-only", @for = "loginEmail" })
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", id = "loginEmail", Name = "loginEmail", placeholder = "Username", maxlength = "50" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Password, new { @class = "sr-only", @for = "loginPassword" })
+                        @Html.TextBoxFor(m => m.Password, new { @class = "form-control", id = "loginPassword", Name = "loginPassword", placeholder = "Password", maxlength = "30"})
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="rememberMe" id="rememberMe">
+                            Remember me
+                        </label>
+                        <a href="#forgotPasswordModal" data-dismiss="modal" data-toggle="modal" class="pull-right" style="cursor: pointer">Forgot Password?</a>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal" data-target="#signupModal" data-toggle="modal">Register</button>
+                    <input type="submit" name="login" class="btn orange" value="Login">
+                    <button type="button" data-dismiss="modal" class="btn btn-default">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}

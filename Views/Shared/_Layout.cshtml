@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <nav role="navigation" class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Simple Note", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse" id="navbarCollapse">
+                <ul class="nav navbar-nav">
+                    <li class="active">@Html.ActionLink("Home", "Index", "Home")</li>
+                    @if (Session["userName"] != null) { <li>@Html.ActionLink("Profile", "Index", "Profile")</li> }
+                    @if (Session["userName"] != null) { <li>@Html.ActionLink("Notes", "Index", "Note")</li> }
+                    <li><a href="#">Help</a></li>
+                    <li><a href="#">Contact us</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">Welcome @Session["userName"]</a></li>
+                    @if (Session["userName"] == null)
+                    {
+                        <li>@Html.ActionLink("Login", "Login", "Home")</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Logout", "Logout", "Home")</li>
+                    }
+                </ul>
+          </div>
+        </div>
+    </nav>
+
+    @RenderBody()
+
+    <!--Footer-->
+    <div class="footer">
+        <div class="container">
+            <p>Xiaofeng Copyright &copy; @DateTime.Now.Year - My ASP.NET Application.</p>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/lib")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

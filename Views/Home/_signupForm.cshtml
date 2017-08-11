@@ -1,0 +1,43 @@
+﻿@model SimpleNote.Models.User
+
+<!--Sign up modal-->
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "signupForm" }))
+{
+    <div class="modal fade" id="signupModal" role="dialog" aria-labelledby="signupModalTitle" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="signupModalTitle">Sign up today and start using our Online Notes App!</h4>
+                    </div>
+                    <div class="modal-body">
+                        <!--Sign up message for ASP.NET file-->
+                        <div id="signupMessage"></div>
+                        @Html.ValidationSummary()
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Username, new { @class = "sr-only", @for = "username" })
+                            @Html.TextBoxFor(m => m.Username, new { @class = "form-control", id = "username", Name = "username", placeholder = "Username", maxlength = "30" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Email, new { @class = "sr-only", @for = "email" })
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", id = "email", Name = "email", placeholder = "Email", maxlength = "50" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Password, new { @class = "sr-only", @for = "password" })
+                            @Html.TextBoxFor(m => m.Password, new { @class = "form-control", id = "password", Name = "password", placeholder = "Choose a password", maxlength = "30" })
+                        </div>
+                        <div class="form-group">
+                            <label for="passwordConfirm" class="sr-only">Confirm the password:</label>
+                            <input class="form-control" type="password" id="passwordConfirm" name="passwordConfirm" placeholder="Confirm the password" maxlength="30">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input class="btn orange" name="signup" type="submit" value="Sign up">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
